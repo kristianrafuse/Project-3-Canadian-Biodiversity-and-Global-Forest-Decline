@@ -1,15 +1,15 @@
-Status,NatureServe status code,Number of species
-National conservation status rank,,
-Presumed extirpated,NX,40.0
-Possibly extirpated,NH,95.0
-Critically imperiled,N1,873.0
-Imperiled,N2,1245.0
-Vulnerable,N3,2765.0
-Apparently secure,N4,9562.0
-Secure,N5,10038.0
-Unrankable,NU,20448.0
-Unranked,NNR,1549.0
-Not applicable (species is not a target of conservation activities),NNA,
-Exotic,,3220.0
-Accidentally occurring,,699.0
-Total ,,50534.0
+NatureServe status code,Number of species
+,
+NX,40.0
+NH,95.0
+N1,873.0
+N2,1245.0
+N3,2765.0
+N4,9562.0
+N5,10038.0
+NU,20448.0
+NNR,1549.0
+NNA,
+,3220.0
+,699.0
+,50534.0
