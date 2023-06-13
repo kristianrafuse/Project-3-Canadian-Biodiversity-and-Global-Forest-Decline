@@ -69,7 +69,6 @@ d3.json(url)
     });
 
     // Create the traces for the second line graph
-
     const sourceTraces = sources.map(source => ({
       x: secondLineYears,
       y: sourceData[source],
@@ -91,7 +90,29 @@ d3.json(url)
 
     // Create the second line graph
     Plotly.newPlot('line1', sourceTraces, secondLineLayout);
-  })
-  .catch(function(error) {
-    console.error(error);
-  });
+
+// Extract the "Number of species" and "Status" data from the "national" CSV file
+const nationalData = response.national.csv_data;
+
+// Extract the values from the national data
+const values = nationalData.map(entry => parseFloat(entry['Number of species']));
+const labels = nationalData.map(entry => entry['Status']);
+
+// Create the data array for the pie chart
+const pieData = [{
+  labels: labels,
+  values: values,
+  type: 'pie'
+}];
+
+// Create the layout for the pie chart
+const pieLayout = {
+  title: 'Biodiversity Overview',
+  width: 1000,
+  height: 1000
+};
+
+// Create the pie chart
+Plotly.newPlot('pie1', pieData, pieLayout);
+
+});
