@@ -15,6 +15,85 @@ $.ajax({
 
 d3.json(url)
   .then(function(response) {
+    console.log(response);
+    // Add your data verification logic here
+
+    // Extract the data for the bar chart from the "regional" CSV file
+    const regionalData = response.regional.csv_data;
+
+    // Extract the categories from the regional data
+    const regionalCategories = Object.keys(regionalData[0]);
+
+    // Remove the "Region" category from the list
+    regionalCategories.splice(regionalCategories.indexOf('Region'), 1);
+
+    // Create the data array for the bar chart
+    const barData = [{
+      x: regionalCategories,
+      y: regionalCategories.map(category => parseInt(regionalData[0][category])),
+      type: 'bar'
+    }];
+
+    // Create the layout for the bar chart
+    const barLayout = {
+      title: 'Regional Data',
+      xaxis: { title: 'Category' },
+      yaxis: { title: 'Species Count' },
+      width: 1200,
+      height: 1000
+    };
+
+    // Create the bar chart
+    Plotly.newPlot('bar1', barData, barLayout);
+
+    // Populate the dropdown with province options
+    const provinceDropdown = document.getElementById('selDataset');
+    const provinces = regionalData.map(entry => entry.Region);
+    provinces.forEach(province => {
+      const option = document.createElement('option');
+      option.text = province;
+      provinceDropdown.add(option);
+    });
+
+    // Add event listener to the dropdown
+    provinceDropdown.addEventListener('change', function() {
+      const selectedProvince = this.value;
+      updateBarChart(selectedProvince);
+    });
+
+    // Function to update the bar chart based on the selected province
+    function updateBarChart(selectedProvince) {
+      // Find the data for the selected province
+      const selectedData = regionalData.find(entry => entry.Region === selectedProvince);
+
+      // Extract the categories from the selected data
+      const regionalCategories = Object.keys(selectedData);
+
+      // Remove the "Region" category from the list
+      regionalCategories.splice(regionalCategories.indexOf('Region'), 1);
+
+      // Create the data array for the bar chart
+      const barData = [{
+        x: regionalCategories,
+        y: regionalCategories.map(category => parseInt(selectedData[category])),
+        type: 'bar'
+      }];
+
+      // Create the layout for the bar chart
+      const barLayout = {
+        title: `Regional Data for ${selectedProvince}`,
+        xaxis: { title: 'Category' },
+        yaxis: { title: 'Value' },
+        width: 1200,
+        height: 800
+      };
+
+      // Update the bar chart
+      Plotly.newPlot('bar1', barData, barLayout);
+    }
+
+    // Rest of the code...
+    // (Line graphs, pie chart, etc.)
     const data = response.birds.csv_data;
 
     // Extract the years from the data
@@ -74,7 +153,7 @@ d3.json(url)
       y: sourceData[source],
       name: source,
       type: 'scatter',
-      line: {
+      line: {   
         width: 5,
       }
     }));
@@ -91,28 +170,31 @@ d3.json(url)
     // Create the second line graph
     Plotly.newPlot('line1', sourceTraces, secondLineLayout);
 
-// Extract the "Number of species" and "Status" data from the "national" CSV file
-const nationalData = response.national.csv_data;
+    // Extract the "Number of species" and "Status" data from the "national" CSV file
+    const nationalData = response.national.csv_data;
 
-// Extract the values from the national data
-const values = nationalData.map(entry => parseFloat(entry['Number of species']));
-const labels = nationalData.map(entry => entry['Status']);
+    // Extract the values from the national data
+    const values = nationalData.map(entry => parseFloat(entry['Number of species']));
+    const labels = nationalData.map(entry => entry['Status']);
 
-// Create the data array for the pie chart
-const pieData = [{
-  labels: labels,
-  values: values,
-  type: 'pie'
-}];
+    // Create the data array for the pie chart
+    const pieData = [{
+      labels: labels,
+      values: values,
+      type: 'pie'
+    }];
 
-// Create the layout for the pie chart
-const pieLayout = {
-  title: 'Biodiversity Overview',
-  width: 1000,
-  height: 1000
-};
+    // Create the layout for the pie chart
+    const pieLayout = {
+      title: 'Biodiversity Overview',
+      width: 1000,
+      height: 1000
+    };
 
-// Create the pie chart
-Plotly.newPlot('pie1', pieData, pieLayout);
+    // Create the pie chart
+    Plotly.newPlot('pie1', pieData, pieLayout);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
 
-});
