@@ -13,6 +13,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="row">
@@ -32,27 +33,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-5 full-width text-center">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-md-2">
         <div class="well">
           <h5>Select Province:</h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
-        <div class="panel panel-primary" style="border: 1px solid green; border-color: green;">
-          <div class="panel-heading" style="background-color: rgb(26, 116, 26);">
-            <h3 class="panel-title" style="background-color: rgb(26, 116, 26);">Demographic Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
-        </div>
+      </div>
+      <div class="col-md-5 full-width text-center"> <!-- Added closing div tag -->
+        <div id="pie1"></div>
       </div>
     </div>
   </div>

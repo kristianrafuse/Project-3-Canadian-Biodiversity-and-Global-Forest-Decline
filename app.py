@@ -26,7 +26,7 @@ def api():
         try:
             with open(csv_file_path, "r", encoding="utf-8") as csv_file:
                 csv_data = list(csv.DictReader(csv_file))
-            filename = csv_file_path.split("/")[-1].split(".")[0]  # Extract the filename without extension
+            filename = csv_file_path.split("/")[-1].split(".")[0]
             data[filename] = {"csv_data": csv_data}
         except FileNotFoundError:
             return jsonify({"error": f"CSV file not found: {csv_file_path}"})
