@@ -1,5 +1,18 @@
 let url = 'http://127.0.0.1:5000/api';
 
+$.ajax({
+  url: url,
+  method: 'GET',
+  dataType: 'json',
+  success: function(data) {
+    console.log(data);
+    // Add your data verification logic here
+  },
+  error: function(xhr, status, error) {
+    console.error(error);
+  }
+});
+
 d3.json(url)
   .then(function(response) {
     const data = response.birds.csv_data;
@@ -22,14 +35,19 @@ d3.json(url)
       x: years,
       y: categoryData[category],
       name: category,
-      type: 'scatter'
+      type: 'scatter',
+      line: {
+        width: 5     
+      }
     }));
 
     // Create the layout for the first line graph
     const layout = {
       title: 'Bird Population Changes',
       xaxis: { title: 'Year' },
-      yaxis: { title: 'Percentage Change' }
+      yaxis: { title: 'Percentage Change' },
+      width: 1200,
+      height: 800
     };
 
     // Create the first line graph
@@ -41,26 +59,38 @@ d3.json(url)
     // Extract the years from the data
     const secondLineYears = secondLineData.map(entry => parseInt(entry.Year));
 
-    // Extract the national index percentage change values
-    const nationalIndex = secondLineData.map(entry => parseFloat(entry['National index (percent change)']));
+    // Extract the percentage change values for each source of data
+    const sources = Object.keys(secondLineData[0]).filter(key => key !== 'Year');
 
-    // Create the trace for the second line graph
-    const secondLineTrace = {
+    const sourceData = {};
+
+    sources.forEach(source => {
+      sourceData[source] = secondLineData.map(entry => parseFloat(entry[source]));
+    });
+
+    // Create the traces for the second line graph
+
+    const sourceTraces = sources.map(source => ({
       x: secondLineYears,
-      y: nationalIndex,
-      name: 'National Index',
-      type: 'scatter'
-    };
+      y: sourceData[source],
+      name: source,
+      type: 'scatter',
+      line: {
+        width: 5,
+      }
+    }));
 
     // Create the layout for the second line graph
     const secondLineLayout = {
       title: 'Species Percentage Change',
       xaxis: { title: 'Year' },
-      yaxis: { title: 'Percentage Change' }
+      yaxis: { title: 'Percentage Change' },
+      width: 1200,
+      height: 800
     };
 
     // Create the second line graph
-    Plotly.newPlot('line1', [secondLineTrace], secondLineLayout);
+    Plotly.newPlot('line1', sourceTraces, secondLineLayout);
   })
   .catch(function(error) {
     console.error(error);
