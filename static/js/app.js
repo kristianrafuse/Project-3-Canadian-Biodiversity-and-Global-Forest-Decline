@@ -43,7 +43,7 @@ d3.json(url)
 
     // Create the layout for the first line graph
     const layout = {
-      title: 'Bird Population Changes',
+      title: 'Bird Population Changes Since 1970',
       xaxis: { title: 'Year' },
       yaxis: { title: 'Percentage Change' },
       width: 1200,
@@ -82,7 +82,7 @@ d3.json(url)
 
     // Create the layout for the second line graph
     const secondLineLayout = {
-      title: 'Species Percentage Change',
+      title: 'Species Percentage Change Since 1970',
       xaxis: { title: 'Year' },
       yaxis: { title: 'Percentage Change' },
       width: 1200,
