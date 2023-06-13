@@ -10,14 +10,14 @@ def welcome():
 @app.route("/api")
 def api():
     csv_file_paths = [
-        "Resources/birds.csv",
-        "Resources/forests_df_percent.csv",
-        "Resources/forests_df_total.csv",
-        "Resources/national.csv",
-        "Resources/regional.csv",
-        "Resources/selected.csv",
-        "Resources/species_percent.csv",
-        "Resources/species.csv"
+        "Project-3/Resources/birds.csv",
+        "Project-3/Resources/forests_df_percent.csv",
+        "Project-3/Resources/forests_df_total.csv",
+        "Project-3/Resources/national.csv",
+        "Project-3/Resources/regional.csv",
+        "Project-3/Resources/selected.csv",
+        "Project-3/Resources/species_percent.csv",
+        "Project-3/Resources/species.csv"
     ]
 
     data = {}
