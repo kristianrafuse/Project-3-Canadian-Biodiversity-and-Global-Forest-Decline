@@ -19,7 +19,7 @@ def api():
         "Resources/species_percent.csv",
         "Resources/species.csv"
     ]
-
+    
     data = {}
 
     for csv_file_path in csv_file_paths:

@@ -15,6 +15,73 @@ $.ajax({
 d3.json(url)
   .then(function(response) {
 
+    const selectedData = response.selected.csv_data;
+
+// Create an array to store the formatted data
+const formattedData = [];
+
+// Iterate over each entry in the selectedData array
+selectedData.forEach(entry => {
+  const speciesGroup = entry['Species group'];
+  const criticallyImperiled = entry['Critically imperiled (N1)'];
+  const imperiled = entry['Imperiled (N2)'];
+  const vulnerable = entry['Vulnerable (N3)'];
+  const apparentlySecure = entry['Apparently secure (N4)'];
+  const secure = entry['Secure (N5)'];
+  const subtotalSpecies = entry['Subtotal of species with numerical ranks'];
+  const presumedExtirpated = entry['Presumed extirpated (NX)'];
+  const possiblyExtirpated = entry['Possibly extirpated (NH)'];
+  const unrankable = entry['Unrankable (NU)'];
+  const unranked = entry['Unranked (NNR)'];
+  const notApplicable = entry['Not applicable (NNA)'];
+  const total = entry['Total'];
+
+  // Create an array with the formatted row data
+  const rowData = [
+    speciesGroup,
+    criticallyImperiled,
+    imperiled,
+    vulnerable,
+    apparentlySecure,
+    secure,
+    subtotalSpecies,
+    presumedExtirpated,
+    possiblyExtirpated,
+    unrankable,
+    unranked,
+    notApplicable,
+    total
+  ];
+
+  // Add the row data to the formattedData array
+  formattedData.push(rowData);
+});
+
+// Define the table columns
+const columns = [
+  { title: 'Species Group' },
+  { title: 'Critically Imperiled (N1)' },
+  { title: 'Imperiled (N2)' },
+  { title: 'Vulnerable (N3)' },
+  { title: 'Apparently Secure (N4)' },
+  { title: 'Secure (N5)' },
+  { title: 'Subtotal of Species with Numerical Ranks' },
+  { title: 'Presumed Extirpated (NX)' },
+  { title: 'Possibly Extirpated (NH)' },
+  { title: 'Unrankable (NU)' },
+  { title: 'Unranked (NNR)' },
+  { title: 'Not Applicable (NNA)' },
+  { title: 'Total' }
+];
+
+// Initialize the DataTable
+$(document).ready(function() {
+  $('#myTable').DataTable({
+    data: formattedData,
+    columns: columns
+  });
+});
+
     // Extract the data for the bar chart from the "regional" CSV file
     const regionalData = response.regional.csv_data;
 
@@ -33,7 +100,7 @@ d3.json(url)
 
     // Create the layout for the bar chart
     const barLayout = {
-      title: 'Regional Data',
+      title: 'Regional Data, Canada, 2020',
       xaxis: { title: 'Category' },
       yaxis: { title: 'Species Count' },
       width: 1200,
@@ -80,7 +147,7 @@ d3.json(url)
       const barLayout = {
         title: `Regional Data for ${selectedProvince}`,
         xaxis: { title: 'Category' },
-        yaxis: { title: 'Value' },
+        yaxis: { title: 'Species Count' },
         width: 1200,
         height: 800
       };
@@ -183,7 +250,7 @@ d3.json(url)
 
     // Create the layout for the pie chart
     const pieLayout = {
-      title: 'Biodiversity Overview',
+      title: 'Biodiversity Overview, Canada 2020',
       width: 1000,
       height: 1000
     };
