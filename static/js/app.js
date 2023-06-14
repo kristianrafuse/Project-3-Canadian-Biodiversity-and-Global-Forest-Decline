@@ -266,11 +266,43 @@ $(document).ready(function() {
     console.error(error);
   });
 
+  d3.json(url)
+  .then(function(response) {
+    // Extract the CSV data from the response
+    const csvData = response.forests_df_total.csv_data;
 
-// Initialize the map
-var map = L.map('map').setView([0, 0], 2);
+    // Create a map instance (replace 'mapContainer' with your actual map container ID)
+    var map = L.map('map').setView([0, 0], 2);
 
-// Add a tile layer to the map
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-}).addTo(map);
+    // Add a tile layer to the map (you can choose a different tile provider if needed)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);
+
+    // Iterate over the CSV data
+    csvData.forEach(function(country) {
+      // Extract the required values for each country
+      var latitude = parseFloat(country.Latitude);
+      var longitude = parseFloat(country.Longitude);
+      var value1990 = parseFloat(country['1990 Total'])*2;
+      var value2000 = parseFloat(country['2000 Total'])*2;
+      var value2010 = parseFloat(country['2010 Total'])*2;
+      var value2020 = parseFloat(country['2020 Total'])*2;
+
+      // Create circles for each year/value combination
+      var circle1990 = L.circle([latitude, longitude], value1990, { color: 'green', fillColor: 'green' }).addTo(map);
+      var circle2000 = L.circle([latitude, longitude], value2000, { color: 'red', fillColor: 'green' }).addTo(map);
+      var circle2010 = L.circle([latitude, longitude], value2010, { color: 'yellow', fillColor: 'green' }).addTo(map);
+      var circle2020 = L.circle([latitude, longitude], value2020, { color: 'green', fillColor: 'green' }).addTo(map);
+      
+      // Add popups to the circles with the country name and values
+      circle1990.bindPopup('Country: ' + country.Country + '<br>1990 Value: ' + value1990);
+      circle2000.bindPopup('Country: ' + country.Country + '<br>2000 Value: ' + value2000);
+      circle2010.bindPopup('Country: ' + country.Country + '<br>2010 Value: ' + value2010);
+      circle2020.bindPopup('Country: ' + country.Country + '<br>2020 Value: ' + value2020);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error:', error);
+  });
