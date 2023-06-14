@@ -15,7 +15,7 @@ $.ajax({
 d3.json(url)
   .then(function(response) {
 
-    const selectedData = response.selected.csv_data;
+const selectedData = response.selected.csv_data;
 
 // Create an array to store the formatted data
 const formattedData = [];
@@ -148,7 +148,9 @@ $(document).ready(function() {
       // Create the layout for the bar chart
       const barLayout = {
         title: `Regional Data for ${selectedProvince}`,
-        xaxis: { title: 'Category' },
+        xaxis: { title: 'Category',
+                 automargin: true,
+      },
         yaxis: { title: 'Species Count' },
         width: 1200,
         height: 800
@@ -264,3 +266,11 @@ $(document).ready(function() {
     console.error(error);
   });
 
+
+// Initialize the map
+var map = L.map('map').setView([0, 0], 2);
+
+// Add a tile layer to the map
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+}).addTo(map);

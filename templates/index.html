@@ -8,6 +8,8 @@
   <title>Biodiversity Loss</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.2/datatables.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
   <style>
     .full-width {
       width: 100%;
@@ -44,7 +46,7 @@
 
 <!-- block below taken directly from 'https://www.canada.ca/en/environment-climate-change/services/environmental-indicators/general-status-wild-species.html#status-assessment' -->
     <div class="table-responsive section">
-      <table class="table table-bordered table-responsive table-hover table-condensed">
+      <table class="table table-bordered table-responsive table-hover table-condensed" style="margin-bottom: 150px;">
 <caption>Definition of conservation status categories</caption>
 <tbody><tr class="active"><th style="text-align: center;" scope="col"><strong>NatureServe code </strong></th>
 <th style="text-align: center;" scope="col"><strong>Status name </strong></th>
@@ -87,7 +89,7 @@
       <div class="col-md-2">
         <div class="well" style="width: 400px; height: 100px;">
           <h5>Select Region:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          <select id="selDataset" onchange="(this.value)"></select>
         </div>
       </div>
       <div class="col-md-5 full-width text-center" style="margin-bottom: 100px;">
@@ -97,15 +99,25 @@
 
     <div class="row">
       <div class="col-md-5 full-width text-center" style="margin-bottom: 100px;">
+        <h3>Biodiversity Table</h3> Canadian Biodiversity by Species Group
         <table id="myTable"></table>
       </div>
     </div>
   </div>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center" style="margin-bottom: 100px;">
+        <div id="map" style="width: 1000px; height: 800px; margin: 0 auto;"></div>
+      </div>
+    </div>
+  </div>
+  
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="https://cdn.datatables.net/v/dt/dt-1.11.2/datatables.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="./static/js/app.js"></script>
 </body>
 
