@@ -101,7 +101,9 @@ $(document).ready(function() {
     // Create the layout for the bar chart
     const barLayout = {
       title: 'Regional Data, Canada, 2020',
-      xaxis: { title: 'Category' },
+      xaxis: { title: 'Category',
+              automargin: true,
+    },
       yaxis: { title: 'Species Count' },
       width: 1200,
       height: 1000

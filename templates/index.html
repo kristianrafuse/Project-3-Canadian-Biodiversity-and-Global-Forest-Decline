@@ -37,14 +37,55 @@
     </div>
 
     <div class="row">
-      <div class="col-md-5 full-width text-center" style="margin-bottom: 100px;">
+      <div class="col-md-5 full-width text-center">
         <div id="pie1"></div>
       </div>
     </div>
 
+<!-- block below taken directly from 'https://www.canada.ca/en/environment-climate-change/services/environmental-indicators/general-status-wild-species.html#status-assessment' -->
+    <div class="table-responsive section">
+      <table class="table table-bordered table-responsive table-hover table-condensed">
+<caption>Definition of conservation status categories</caption>
+<tbody><tr class="active"><th style="text-align: center;" scope="col"><strong>NatureServe code </strong></th>
+<th style="text-align: center;" scope="col"><strong>Status name </strong></th>
+<th style="text-align: center;" scope="col"><strong>Definition </strong></th>
+</tr><tr><td class="text-center">X</td>
+<td>Presumed extirpated</td>
+<td>Species is believed to be extirpated from the jurisdiction (nation, province, territory, or ocean region). Not located despite intensive searches of historical sites and other appropriate habitat, and virtually no likelihood that it will be rediscovered.</td>
+</tr><tr><td class="text-center">H</td>
+<td>Possibly extirpated</td>
+<td>Known from only historical records but still some hope of rediscovery. There is evidence that the species may no longer be present in the jurisdiction, but not enough to state this with certainty.</td>
+</tr><tr><td class="text-center">1</td>
+<td>Critically imperiled</td>
+<td>At very high risk of extirpation in the jurisdiction due to very restricted range, very few populations or occurrences, very steep declines, severe threats, or other factors.</td>
+</tr><tr><td class="text-center">2</td>
+<td>Imperiled</td>
+<td>At high risk of extirpation in the jurisdiction due to restricted range, few populations or occurrences, steep declines, severe threats, or other factors.</td>
+</tr><tr><td class="text-center">3</td>
+<td>Vulnerable</td>
+<td>At moderate risk of extirpation in the jurisdiction due to a fairly restricted range, relatively few populations or occurrences, recent and widespread declines, threats, or other factors.</td>
+</tr><tr><td class="text-center">4</td>
+<td>Apparently secure</td>
+<td>At a fairly low risk of extirpation in the jurisdiction due to an extensive range and/or many populations or occurrences, but with possible cause for some concern as a result of local recent declines, threats, or other factors.</td>
+</tr><tr><td class="text-center">5</td>
+<td>Secure</td>
+<td>At very low or no risk of extirpation in the jurisdiction due to a very extensive range, abundant populations or occurrences, with little to no concern from declines or threats.</td>
+</tr><tr><td class="text-center">U</td>
+<td>Unrankable</td>
+<td>Currently unrankable due to lack of information or due to substantially conflicting information about status or trends.</td>
+</tr><tr><td class="text-center">NR</td>
+<td>Not ranked</td>
+<td>National or subnational conservation status not yet assessed.</td>
+</tr><tr><td class="text-center">NA</td>
+<td>Not applicable</td>
+<td>A conservation status rank is not applicable because the species is not a suitable target for conservation activities. This includes exotic species (that have been moved beyond their natural range as a result of human activity) or accidental species (naturally occurring infrequently and unpredictably outside their usual range).</td>
+</tr></tbody></table>
+<!-- ^^^^^ taken directly from 'https://www.canada.ca/en/environment-climate-change/services/environmental-indicators/general-status-wild-species.html#status-assessment' ^^^^^-->
+
+</div>
     <div class="row">
       <div class="col-md-2">
-        <div class="well" style="width: 400px; height: 100px; margin-bottom: 100px;">
+        <div class="well" style="width: 400px; height: 100px;">
           <h5>Select Region:</h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
