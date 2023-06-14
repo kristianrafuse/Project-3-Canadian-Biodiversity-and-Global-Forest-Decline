@@ -6,7 +6,6 @@ $.ajax({
   dataType: 'json',
   success: function(data) {
     console.log(data);
-    // Add your data verification logic here
   },
   error: function(xhr, status, error) {
     console.error(error);
@@ -15,8 +14,6 @@ $.ajax({
 
 d3.json(url)
   .then(function(response) {
-    console.log(response);
-    // Add your data verification logic here
 
     // Extract the data for the bar chart from the "regional" CSV file
     const regionalData = response.regional.csv_data;
