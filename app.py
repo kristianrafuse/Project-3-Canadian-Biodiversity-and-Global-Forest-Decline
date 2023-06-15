@@ -22,6 +22,8 @@ def api():
 
     data = {}
 
+# Loop through the csvs, read as a dictionary, grab a name based on file name and path, remove directory and path, exort to data to jsonify
+
     for csv_file_path in csv_file_paths:
         try:
             with open(csv_file_path, "r", encoding="utf-8") as csv_file:
