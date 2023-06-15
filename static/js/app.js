@@ -309,3 +309,5 @@ $(document).ready(function() {
   .catch(function(error) {
     console.log('Error:', error);
   });
+
+  // Complete
