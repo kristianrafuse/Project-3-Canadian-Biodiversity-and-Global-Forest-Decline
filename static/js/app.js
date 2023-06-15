@@ -1,5 +1,4 @@
-let url = 'http://127.0.0.1:5000/api';
-
+let url = '/api';
 
 // tried a new to me method of GETing the data with AJAX
 $.ajax({
@@ -161,7 +160,7 @@ $(document).ready(function() {
       // Update the bar chart
       Plotly.newPlot('bar1', barData, barLayout);
     }
-    
+
     // (Line graphs, pie chart, etc.)
     const data = response.birds.csv_data;
 
