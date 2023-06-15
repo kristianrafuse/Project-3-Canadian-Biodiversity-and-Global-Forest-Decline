@@ -291,16 +291,16 @@ $(document).ready(function() {
       var value2020 = parseFloat(country['2020 Total'])*2;
 
       // Create circles for each year/value combination
-      var circle1990 = L.circle([latitude, longitude], value1990, { color: 'green', fillColor: 'green' }).addTo(map);
+      var circle1990 = L.circle([latitude, longitude], value1990, { color: 'red', fillColor: 'green' }).addTo(map);
       var circle2000 = L.circle([latitude, longitude], value2000, { color: 'red', fillColor: 'green' }).addTo(map);
       var circle2010 = L.circle([latitude, longitude], value2010, { color: 'yellow', fillColor: 'green' }).addTo(map);
       var circle2020 = L.circle([latitude, longitude], value2020, { color: 'green', fillColor: 'green' }).addTo(map);
       
       // Add popups to the circles with the country name and values
-      circle1990.bindPopup('Country: ' + country.Country + '<br>1990 Value: ' + value1990);
-      circle2000.bindPopup('Country: ' + country.Country + '<br>2000 Value: ' + value2000);
-      circle2010.bindPopup('Country: ' + country.Country + '<br>2010 Value: ' + value2010);
-      circle2020.bindPopup('Country: ' + country.Country + '<br>2020 Value: ' + value2020);
+      circle1990.bindPopup('Country: ' + country.Country + '<br>1990: ' + value1990 +'km');
+      circle2000.bindPopup('Country: ' + country.Country + '<br>2000: ' + value2000 +'km');
+      circle2010.bindPopup('Country: ' + country.Country + '<br>2010: ' + value2010 +'km');
+      circle2020.bindPopup('Country: ' + country.Country + '<br>2020: ' + value2020 +'km');
     });
   })
   .catch(function(error) {
