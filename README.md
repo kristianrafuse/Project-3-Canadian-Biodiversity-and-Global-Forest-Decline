@@ -30,3 +30,5 @@ https://www.kaggle.com/datasets/parasharmanas/world-forest-cover-trends
 
 Additional information available: 
 https://www.canada.ca/en/environment-climate-change/services/species-risk-public-registry/general-status/wild-species-2020.html
+
+Images sources included in HTML. 
