@@ -294,10 +294,10 @@ $(document).ready(function() {
       var circle2020 = L.circle([latitude, longitude], value2020, { color: 'green', fillColor: 'green' }).addTo(map);
       
       // Add popups to the circles with the country name and values
-      circle1990.bindPopup('Country: ' + country.Country + '<br>1990: ' + value1990 +'km');
-      circle2000.bindPopup('Country: ' + country.Country + '<br>2000: ' + value2000 +'km');
-      circle2010.bindPopup('Country: ' + country.Country + '<br>2010: ' + value2010 +'km');
-      circle2020.bindPopup('Country: ' + country.Country + '<br>2020: ' + value2020 +'km');
+      circle1990.bindPopup('<span style="font-size: 18px;">' + country.Country + '</span><br><span style="font-size: 14px;">1990: ' + value1990 +' km</span>');
+      circle2000.bindPopup('<span style="font-size: 18px;">' + country.Country + '</span><br><span style="font-size: 14px;">2000: ' + value2000 +' km</span>');
+      circle2010.bindPopup('<span style="font-size: 18px;">' + country.Country + '</span><br><span style="font-size: 14px;">2010: ' + value2010 +' km</span>');
+      circle2020.bindPopup('<span style="font-size: 18px;">' + country.Country + '</span><br><span style="font-size: 14px;">2020: ' + value2020 +' km</span>');
     });
   });
 
