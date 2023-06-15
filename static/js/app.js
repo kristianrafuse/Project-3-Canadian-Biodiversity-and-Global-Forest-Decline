@@ -1,5 +1,7 @@
 let url = 'http://127.0.0.1:5000/api';
 
+
+// tried a new to me method of GETing the data with AJAX
 $.ajax({
   url: url,
   method: 'GET',
@@ -15,26 +17,28 @@ $.ajax({
 d3.json(url)
   .then(function(response) {
 
+// grab the data needed to build the table 
+// I'll be building a table with datatables.net, a new to me JavaScript plugin for building interactive tables
 const selectedData = response.selected.csv_data;
 
 // Create an array to store the formatted data
 const formattedData = [];
 
 // Iterate over each entry in the selectedData array
-selectedData.forEach(entry => {
-  const speciesGroup = entry['Species group'];
-  const criticallyImperiled = entry['Critically imperiled (N1)'];
-  const imperiled = entry['Imperiled (N2)'];
-  const vulnerable = entry['Vulnerable (N3)'];
-  const apparentlySecure = entry['Apparently secure (N4)'];
-  const secure = entry['Secure (N5)'];
-  const subtotalSpecies = entry['Subtotal of species with numerical ranks'];
-  const presumedExtirpated = entry['Presumed extirpated (NX)'];
-  const possiblyExtirpated = entry['Possibly extirpated (NH)'];
-  const unrankable = entry['Unrankable (NU)'];
-  const unranked = entry['Unranked (NNR)'];
-  const notApplicable = entry['Not applicable (NNA)'];
-  const total = entry['Total'];
+selectedData.forEach(column => {
+  const speciesGroup = column['Species group'];
+  const criticallyImperiled = column['Critically imperiled (N1)'];
+  const imperiled = column['Imperiled (N2)'];
+  const vulnerable = column['Vulnerable (N3)'];
+  const apparentlySecure = column['Apparently secure (N4)'];
+  const secure = column['Secure (N5)'];
+  const subtotalSpecies = column['Subtotal of species with numerical ranks'];
+  const presumedExtirpated = column['Presumed extirpated (NX)'];
+  const possiblyExtirpated = column['Possibly extirpated (NH)'];
+  const unrankable = column['Unrankable (NU)'];
+  const unranked = column['Unranked (NNR)'];
+  const notApplicable = column['Not applicable (NNA)'];
+  const total = column['Total'];
 
   // Create an array with the formatted row data
   const rowData = [
@@ -74,7 +78,7 @@ const columns = [
   { title: 'Total' }
 ];
 
-// Initialize the DataTable
+// Initialize the DataTable from dataTables docs
 $(document).ready(function() {
   $('#myTable').DataTable({
     data: formattedData,
@@ -82,7 +86,7 @@ $(document).ready(function() {
   });
 });
 
-    // Extract the data for the bar chart from the "regional" CSV file
+    // Extract the data for the bar chart
     const regionalData = response.regional.csv_data;
 
     // Extract the categories from the regional data
