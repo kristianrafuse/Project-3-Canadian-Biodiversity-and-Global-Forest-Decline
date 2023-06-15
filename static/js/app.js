@@ -78,14 +78,12 @@ const columns = [
   { title: 'Total' }
 ];
 
-// Initialize the DataTable from dataTables docs
 $(document).ready(function() {
   $('#myTable').DataTable({
     data: formattedData,
-    columns: columns
+    columns: columns,
   });
 });
-
     // Extract the data for the bar chart
     const regionalData = response.regional.csv_data;
 
@@ -109,7 +107,7 @@ $(document).ready(function() {
               automargin: true,
     },
       yaxis: { title: 'Species Count' },
-      width: 1200,
+      width: 1139,
       height: 1000
     };
 
@@ -156,15 +154,14 @@ $(document).ready(function() {
                  automargin: true,
       },
         yaxis: { title: 'Species Count' },
-        width: 1200,
-        height: 800
+        width: 1139,
+        height: 1000
       };
 
       // Update the bar chart
       Plotly.newPlot('bar1', barData, barLayout);
     }
-
-    // Rest of the code...
+    
     // (Line graphs, pie chart, etc.)
     const data = response.birds.csv_data;
 
@@ -197,8 +194,8 @@ $(document).ready(function() {
       title: 'Bird Population Changes Since 1970',
       xaxis: { title: 'Year' },
       yaxis: { title: 'Percentage Change' },
-      width: 1200,
-      height: 800
+      width: 1139,
+      height: 900
     };
 
     // Create the first line graph
@@ -235,8 +232,8 @@ $(document).ready(function() {
       title: 'Species Percentage Change Since 1970',
       xaxis: { title: 'Year' },
       yaxis: { title: 'Percentage Change' },
-      width: 1200,
-      height: 800
+      width: 1139,
+      height: 900
     };
 
     // Create the second line graph
@@ -259,7 +256,7 @@ $(document).ready(function() {
     // Create the layout for the pie chart
     const pieLayout = {
       title: 'Biodiversity Overview, Canada 2020',
-      width: 1000,
+      width: 1139,
       height: 1000
     };
 
@@ -276,7 +273,10 @@ $(document).ready(function() {
     const csvData = response.forests_df_total.csv_data;
 
     // Create a map instance (replace 'mapContainer' with your actual map container ID)
-    var map = L.map('map').setView([0, 0], 2);
+    var map = L.map('map', {
+      minZoom: 1,
+      maxZoom: 10
+    }).setView([0, 0], 2);
 
     // Add a tile layer to the map (you can choose a different tile provider if needed)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -289,10 +289,10 @@ $(document).ready(function() {
       // Extract the required values for each country
       var latitude = parseFloat(country.Latitude);
       var longitude = parseFloat(country.Longitude);
-      var value1990 = parseFloat(country['1990 Total'])*2;
-      var value2000 = parseFloat(country['2000 Total'])*2;
-      var value2010 = parseFloat(country['2010 Total'])*2;
-      var value2020 = parseFloat(country['2020 Total'])*2;
+      var value1990 = parseFloat(country['1990 Total']);
+      var value2000 = parseFloat(country['2000 Total']);
+      var value2010 = parseFloat(country['2010 Total']);
+      var value2020 = parseFloat(country['2020 Total']);
 
       // Create circles for each year/value combination
       var circle1990 = L.circle([latitude, longitude], value1990, { color: 'red', fillColor: 'green' }).addTo(map);

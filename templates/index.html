@@ -20,33 +20,47 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-12 jumbotron text-center" style="margin-bottom: 100px;">
+      <div class="col-md-12 jumbotron text-center" style="width: 1200px; margin-bottom: 100px;">
         <h1>Canadian Biodiversity Dashboard</h1>
         <p>Use the interactive charts below to explore the dataset</p>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/endangered-animals" style="display: flex; justify-content: center;">
+          <img src="https://d3d0lqu00lnqvz.cloudfront.net/caribou-1.jpg" alt="Caribous!" style="width: 1200px; height: auto;">
+        </a>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-5 full-width text-center" style="margin-bottom: 100px;">
-        <div id="line1"></div>
+        <div id="line1" style="margin-bottom: 100px; border: 1px solid black; justify-content: center;"></div>
+        <a href="https://www.animalsaroundtheglobe.com/animals-in-ontario/" style="display: flex; justify-content: center;">
+          <img src="https://www.animalsaroundtheglobe.com/wp-content/uploads/2022/04/Barn-owl.jpg" alt="Barn Owl" style="width: 1139px; height: auto;">
+        </a>        
       </div>
     </div>
 
+    
+
     <div class="row">
       <div class="col-md-5 full-width text-center" style="margin-bottom: 100px;">
-        <div id="line2"></div>
+        <div id="line2" style="margin-bottom: 100px; border: 1px solid black; justify-content: center;"></div>
+        <a href="https://www.cbc.ca/news/science/wwf-living-planet-sara-1.4290024" style="display: flex; justify-content: center;">
+          <img src="https://i.cbc.ca/1.2994371.1426271468!/fileImage/httpImage/canada-warbler.jpg" alt="Canada-warbler" style="width: 1139px; height: auto;">
+        </a>        
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-5 full-width text-center">
-        <div id="pie1"></div>
+        <a href="https://wwf.ca/wildlife/" style="display: flex; justify-content: center;">
+          <img src="https://wwf.ca/wp-content/uploads/2020/01/Hero-Image-16-1-1-scaled.jpg" alt="Image Description" style="width: 1139px; height: auto;">
+        </a>        
+        <div id="pie1"style="margin-bottom: 100px; border: 1px solid black; justify-content: center;"></div>
       </div>
     </div>
 
 <!-- block below taken directly from 'https://www.canada.ca/en/environment-climate-change/services/environmental-indicators/general-status-wild-species.html#status-assessment' -->
     <div class="table-responsive section">
-      <table class="table table-bordered table-responsive table-hover table-condensed" style="margin-bottom: 150px;">
+      <table class="table table-bordered table-responsive table-hover table-condensed" style="margin-bottom: 100px;">
 <caption>Definition of conservation status categories</caption>
 <tbody><tr class="active"><th style="text-align: center;" scope="col"><strong>NatureServe code </strong></th>
 <th style="text-align: center;" scope="col"><strong>Status name </strong></th>
@@ -82,34 +96,50 @@
 <td>Not applicable</td>
 <td>A conservation status rank is not applicable because the species is not a suitable target for conservation activities. This includes exotic species (that have been moved beyond their natural range as a result of human activity) or accidental species (naturally occurring infrequently and unpredictably outside their usual range).</td>
 </tr></tbody></table>
+<a href="https://wwf.ca/wildlife/" style="display: flex; justify-content: center;">
+  <img src="https://naturecanada.ca/wp-content/uploads/2018/11/Grizzly-Bear-1024x628.png" alt="Image Description" style="width: 1139px; height: auto; margin-bottom: 200px;">
+</a>
 <!-- ^^^^^ taken directly from 'https://www.canada.ca/en/environment-climate-change/services/environmental-indicators/general-status-wild-species.html#status-assessment' ^^^^^-->
 
 </div>
     <div class="row">
       <div class="col-md-2">
-        <div class="well" style="width: 400px; height: 100px;">
+        <div class="well" style="width: 1140px; height: 100px;">
           <h5>Select Region:</h5>
           <select id="selDataset" onchange="(this.value)"></select>
         </div>
       </div>
       <div class="col-md-5 full-width text-center" style="margin-bottom: 100px;">
-        <div id="bar1"></div>
+        <div id="bar1"style="margin-bottom: 100px; border: 1px solid black; justify-content: center;"></div>
+        <a href="https://defenders.org/wildlife/canada-lynx" style="display: flex; justify-content: center;">
+          <img src="https://defenders.org/sites/default/files/styles/original_size/public/2020-06/natdiglib_30836_full.jpg?itok=ecCs-CT0" alt="canada-lynx" style="width: 1139px; height: auto;">
+        </a>        
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-5 full-width text-center" style="margin-bottom: 100px;">
-        <h3>Biodiversity Table</h3> Canadian Biodiversity by Species Group
-        <table id="myTable"></table>
+      <div class="col-md-5 full-width text-center" >
+        <h3>Biodiversity Table</h3> Canadian Biodiversity by Species Group, 2020
+        <table id="myTable" style="justify-content: center;" ></table>
+        <div style="padding: 100px;"></div>
+        <a href="https://www.borealconservation.org/intact-forest" style="display: flex; justify-content: center;">
+          <img src="https://images.squarespace-cdn.com/content/v1/5a2ef5702278e792c098cc02/1518457188544-8G7ZA1GC71OJ5LRRLVYY/Mather_Peter26_IntactForest.jpg?format=1500w" alt="Boreal Forest" style="width: 1200px; height: auto;">
+        </a>        
       </div>
     </div>
   </div>
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12 text-center" style="margin-bottom: 100px;">
+      <div class="col-md-12 text-center" style="margin-bottom: 200px;">
         <h3>World Forest Cover per Country</h3> Years 1990, 2000, 2010, 2020
-        <div id="map" style="width: 1200px; height: 800px; margin: auto;"></div>
+        <div id="map" style="width: 1139px; height: 800px; margin: auto; border: 1px solid black;"></div>
+        <div style="padding: 100px;">
+          <a href="https://www.miele.ca/en/Microsites/miele-forest" style="display: flex; justify-content: center;">
+            <img src="https://www.miele.ca/images/default-source/microsites/mieleforest/m-forest-20.jpg?sfvrsn=97c365d1_5" alt="mieleforest" style="width: 1139px; height: auto;">
+          </a>
+        </div>
+        </a>        
       </div>
     </div>
   </div>
