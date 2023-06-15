@@ -8,9 +8,6 @@ $.ajax({
   success: function(data) {
     console.log(data);
   },
-  error: function(xhr, status, error) {
-    console.error(error);
-  }
 });
 
 d3.json(url)
@@ -261,9 +258,6 @@ $(document).ready(function() {
 
     // Create the pie chart
     Plotly.newPlot('pie1', pieData, pieLayout);
-  })
-  .catch(function(error) {
-    console.error(error);
   });
 
   d3.json(url)
@@ -305,9 +299,6 @@ $(document).ready(function() {
       circle2010.bindPopup('Country: ' + country.Country + '<br>2010: ' + value2010 +'km');
       circle2020.bindPopup('Country: ' + country.Country + '<br>2020: ' + value2020 +'km');
     });
-  })
-  .catch(function(error) {
-    console.log('Error:', error);
   });
 
   // Complete
