@@ -22,18 +22,18 @@ const formattedData = [];
 
 // Iterate over each entry in the selectedData array
 selectedData.forEach(column => {
-  const speciesGroup = column['Species group'];
-  const criticallyImperiled = column['Critically imperiled (N1)'];
-  const imperiled = column['Imperiled (N2)'];
-  const vulnerable = column['Vulnerable (N3)'];
-  const apparentlySecure = column['Apparently secure (N4)'];
-  const secure = column['Secure (N5)'];
-  const subtotalSpecies = column['Subtotal of species with numerical ranks'];
-  const presumedExtirpated = column['Presumed extirpated (NX)'];
-  const possiblyExtirpated = column['Possibly extirpated (NH)'];
-  const unrankable = column['Unrankable (NU)'];
-  const unranked = column['Unranked (NNR)'];
-  const notApplicable = column['Not applicable (NNA)'];
+  const speciesGroup = column['Species_group'];
+  const criticallyImperiled = column['Critically_imperiled_N1'];
+  const imperiled = column['Imperiled_N2'];
+  const vulnerable = column['Vulnerable_N3'];
+  const apparentlySecure = column['Apparently_secure_N4'];
+  const secure = column['Secure_N5'];
+  const subtotalSpecies = column['Subtotal_of_species_with_numerical_ranks'];
+  const presumedExtirpated = column['Presumed_extirpated_NX'];
+  const possiblyExtirpated = column['Possibly_extirpated_NH'];
+  const unrankable = column['Unrankable_NU'];
+  const unranked = column['Unranked_NNR'];
+  const notApplicable = column['Not_applicable_NNA'];
   const total = column['Total'];
 
   // Create an array with the formatted row data
@@ -103,7 +103,7 @@ $(document).ready(function() {
               automargin: true,
     },
       yaxis: { title: 'Species Count' },
-      width: 1139,
+      width: 1100,
       height: 1000
     };
 
@@ -150,7 +150,7 @@ $(document).ready(function() {
                  automargin: true,
       },
         yaxis: { title: 'Species Count' },
-        width: 1139,
+        width: 1100,
         height: 1000
       };
 
@@ -158,44 +158,53 @@ $(document).ready(function() {
       Plotly.newPlot('bar1', barData, barLayout);
     }
 
-    // (Line graphs, pie chart, etc.)
-    const data = response.birds.csv_data;
+  // (Line graphs, pie chart, etc.)
+const data = response.birds.csv_data;
 
-    // Extract the years from the data
-    const years = data.map(entry => parseInt(entry.Year));
+// Extract the years from the data
+const years = data.map(entry => parseInt(entry.Year));
 
-    // Extract the percentage change values for each bird category
-    const categories = ['Aerial insectivores', 'All other birds', 'Birds of prey', 'Forest birds',
-                        'Grassland birds', 'Seabirds', 'Shorebirds', 'Waterfowl', 'Wetland birds'];
+// Extract the percentage change values for each bird category
+const categories = [
+  'Aerial_insectivores',
+  'All_other_birds',
+  'Birds_of_prey',
+  'Forest_birds',
+  'Grassland_birds',
+  'Seabirds',
+  'Shorebirds',
+  'Waterfowl',
+  'Wetland_birds'
+];
 
-    const categoryData = {};
+const categoryData = {};
 
-    categories.forEach(category => {
-      categoryData[category] = data.map(entry => parseFloat(entry[`${category} (percentage change from 1970)`]));
-    });
+categories.forEach(category => {
+  categoryData[category] = data.map(entry => parseFloat(entry[`${category}_percentage_change`]));
+});
 
-    // Create the trace objects for the first line graph
-    const traces = categories.map(category => ({
-      x: years,
-      y: categoryData[category],
-      name: category,
-      type: 'scatter',
-      line: {
-        width: 5     
-      }
-    }));
+// Create the trace objects for the line graph
+const traces = categories.map(category => ({
+  x: years,
+  y: categoryData[category],
+  name: category,
+  type: 'scatter',
+  line: {
+    width: 5
+  }
+}));
 
-    // Create the layout for the first line graph
-    const layout = {
-      title: 'Bird Population Changes Since 1970',
-      xaxis: { title: 'Year' },
-      yaxis: { title: 'Percentage Change' },
-      width: 1139,
-      height: 900
-    };
+// Create the layout for the line graph
+const layout = {
+  title: 'Bird Population Changes Since 1970',
+  xaxis: { title: 'Year' },
+  yaxis: { title: 'Percentage Change' },
+  width: 1100,
+  height: 900
+};
 
-    // Create the first line graph
-    Plotly.newPlot('line2', traces, layout);
+// Create the line graph
+Plotly.newPlot('line2', traces, layout);
 
     // Load the data for the second line graph from species_percent.csv_data
     const secondLineData = response.species_percent.csv_data;
@@ -228,7 +237,7 @@ $(document).ready(function() {
       title: 'Species Percentage Change Since 1970',
       xaxis: { title: 'Year' },
       yaxis: { title: 'Percentage Change' },
-      width: 1139,
+      width: 1100,
       height: 900
     };
 
@@ -239,7 +248,7 @@ $(document).ready(function() {
     const nationalData = response.national.csv_data;
 
     // Extract the values from the national data
-    const values = nationalData.map(entry => parseFloat(entry['Number of species']));
+    const values = nationalData.map(entry => parseFloat(entry['Number_of_species']));
     const labels = nationalData.map(entry => entry['Status']);
 
     // Create the data array for the pie chart
@@ -252,7 +261,7 @@ $(document).ready(function() {
     // Create the layout for the pie chart
     const pieLayout = {
       title: 'Biodiversity Overview, Canada 2020',
-      width: 1139,
+      width: 1100,
       height: 1000
     };
 
@@ -282,10 +291,10 @@ $(document).ready(function() {
       // Extract the required values for each country
       var latitude = parseFloat(country.Latitude);
       var longitude = parseFloat(country.Longitude);
-      var value1990 = parseFloat(country['1990 Total']);
-      var value2000 = parseFloat(country['2000 Total']);
-      var value2010 = parseFloat(country['2010 Total']);
-      var value2020 = parseFloat(country['2020 Total']);
+      var value1990 = parseFloat(country['Total_1990']);
+      var value2000 = parseFloat(country['Total_2000']);
+      var value2010 = parseFloat(country['Total_2010']);
+      var value2020 = parseFloat(country['Total_2020']);
 
       // Create circles for each year/value combination
       var circle1990 = L.circle([latitude, longitude], value1990, { color: 'red', fillColor: 'green' }).addTo(map);
@@ -301,4 +310,4 @@ $(document).ready(function() {
     });
   });
 
-  // Complete
+//   // Complete

@@ -29,10 +29,6 @@ CREATE TABLE "forests_df_total" (
   "Longitude" float
 );
 
-CREATE TABLE "national" (
-  "Status" varchar,
-  "Number_of_species" integer
-);
 
 CREATE TABLE "regional" (
   "Region" varchar,
@@ -84,3 +80,10 @@ CREATE TABLE "species" (
   "Fish_index_percent_change" float,
   "Number_of_fish_species" integer
 );
+
+
+CREATE TABLE "national" (
+  "Status" varchar,
+  "Number_of_species" float
+);
+
