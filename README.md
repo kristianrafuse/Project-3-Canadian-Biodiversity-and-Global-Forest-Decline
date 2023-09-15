@@ -5,8 +5,8 @@ In this ETL and interactive visualization project, I examine Canadian biodiversi
 Highlights
 -------
 
-'''
-Define a function to geocode country names and get coordinates using Geoapify
+In the ETL process I defined a function to geocode country names and get coordinates using Geoapify, as I wanted to plot country data on a map, but didn't have the data:
+```
 def geocode_country(country):
     try:
         params = {
@@ -24,7 +24,74 @@ def geocode_country(country):
             return None, None
     except requests.exceptions.RequestException:
         return None, None
-'''
+```
+
+Easy initialization of DataTables:
+```
+$(document).ready(function() {
+  $('#myTable').DataTable({
+    data: formattedData,
+    columns: columns,
+  });
+});
+```
+
+Create interactive and responsive visualizations: 
+```
+    // Create the bar chart
+    Plotly.newPlot('bar1', barData, barLayout);
+
+    // Populate the dropdown with province options
+    const provinceDropdown = document.getElementById('selDataset');
+    const provinces = regionalData.map(entry => entry.Region);
+    provinces.forEach(province => {
+      const option = document.createElement('option');
+      option.text = province;
+      provinceDropdown.add(option);
+    });
+
+    // Add event listener to the dropdown
+    provinceDropdown.addEventListener('change', function() {
+      const selectedProvince = this.value;
+      updateBarChart(selectedProvince);
+    });
+
+    // Function to update the bar chart based on the selected province
+    function updateBarChart(selectedProvince) {
+      // Find the data for the selected province
+      const selectedData = regionalData.find(entry => entry.Region === selectedProvince);
+
+      // Extract the categories from the selected data
+      const regionalCategories = Object.keys(selectedData);
+
+      // Remove the "Region" category from the list
+      regionalCategories.splice(regionalCategories.indexOf('Region'), 1);
+
+      // Create the data array for the bar chart
+      const barData = [{
+        x: regionalCategories,
+        y: regionalCategories.map(category => parseInt(selectedData[category])),
+        type: 'bar'
+      }];
+
+      // Create the layout for the bar chart
+      const barLayout = {
+        title: `Regional Data for ${selectedProvince}`,
+        xaxis: { title: 'Category',
+                 automargin: true,
+      },
+        yaxis: { title: 'Species Count' },
+        width: 1100,
+        height: 1000
+      };
+
+      // Update the bar chart
+      Plotly.newPlot('bar1', barData, barLayout);
+    }
+
+```
+
+
 
 
 
