@@ -1,13 +1,14 @@
 from flask import Flask, jsonify, render_template
 from sqlalchemy import create_engine
+import os
 
 app = Flask(__name__)
 
 # Connection details
-username = 'irgmjyyk'
-password = ''
-host = 'rajje.db.elephantsql.com'
-database = 'irgmjyyk'
+username = os.environ.get('DB_USERNAME')
+password = os.environ.get('DB_PASSWORD')
+host = os.environ.get('DB_HOST')
+database = os.environ.get('DB_NAME')
 
 # Create the database URL
 url = f'postgresql://{username}:{password}@{host}/{database}'
