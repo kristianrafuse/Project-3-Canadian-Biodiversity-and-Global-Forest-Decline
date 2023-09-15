@@ -6,7 +6,7 @@ Highlights
 -------
 
 '''
-# Define a function to geocode country names and get coordinates using Geoapify
+Define a function to geocode country names and get coordinates using Geoapify
 def geocode_country(country):
     try:
         params = {
