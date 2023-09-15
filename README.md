@@ -1,8 +1,18 @@
-# Project-3
 Canadian Biodiversity and Global Forest Decline
+-------
+In this ETL and visualization project, I examine Canadian biodiversity decline and forested area loss.
+
+Highlights
+-------
+
+
+
+
+
+
 
 Resources: 
-
+-------
 Regional breakdown of the status of wild species, Canada, 2020
 https://www.canada.ca/en/environment-climate-change/services/environmental-indicators/general-status-wild-species.html
 
